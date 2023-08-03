@@ -1,6 +1,6 @@
 package com.javarush.island.zonov.animals;
 
-import com.javarush.island.zonov.animalCharactersticInterface.Characteristic;
+import com.javarush.island.zonov.charactersticInterfaces.AnimalCharacteristic;
 import com.javarush.island.zonov.animalInterfaces.Predator;
 import com.javarush.island.zonov.liveNature.Animal;
 
@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static com.javarush.island.zonov.constants.PredatorConstants.WOLF_VARIATION_OF_EATING;
 
-@Characteristic(weight = 50, maxCountOnCell = 30, speed = 3, foodWeight = 8)
+@AnimalCharacteristic(weight = 50, maxCountOnCell = 30, speed = 3, foodWeight = 8)
 public class Wolf extends Animal implements Predator {
     private static final Map<Class<? extends Animal>, Integer> wolfChancesOfEating = WOLF_VARIATION_OF_EATING;
 

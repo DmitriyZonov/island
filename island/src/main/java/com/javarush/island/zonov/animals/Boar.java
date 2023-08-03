@@ -1,6 +1,6 @@
 package com.javarush.island.zonov.animals;
 
-import com.javarush.island.zonov.animalCharactersticInterface.Characteristic;
+import com.javarush.island.zonov.charactersticInterfaces.AnimalCharacteristic;
 import com.javarush.island.zonov.animalInterfaces.Herbivore;
 import com.javarush.island.zonov.animalInterfaces.Predator;
 import com.javarush.island.zonov.liveNature.Animal;
@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static com.javarush.island.zonov.constants.PredatorConstants.BOAR_VARIATION_OF_EATING;
 
-@Characteristic(weight = 400, maxCountOnCell = 50, speed = 2, foodWeight = 50)
+@AnimalCharacteristic(weight = 400, maxCountOnCell = 50, speed = 2, foodWeight = 50)
 public class Boar extends Animal implements Herbivore, Predator {
     private static final Map<Class<? extends Animal>, Integer> boarChancesOfEating = BOAR_VARIATION_OF_EATING;
     @Override
