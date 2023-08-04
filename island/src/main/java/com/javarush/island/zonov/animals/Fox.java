@@ -12,6 +12,8 @@ import static com.javarush.island.zonov.constants.PredatorConstants.FOX_VARIATIO
 @AnimalCharacteristic(weight = 8, maxCountOnCell = 30, speed = 2, foodWeight = 2)
 public class Fox extends Animal implements Predator {
     private static final Map<Class<? extends Animal>, Integer> foxChancesOfEating = FOX_VARIATION_OF_EATING;
+
+
     @Override
     public boolean eatAnimal(Class eatenAnimal) {
         int chance = foxChancesOfEating.get(eatenAnimal);

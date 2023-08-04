@@ -13,6 +13,7 @@ import static com.javarush.island.zonov.constants.PredatorConstants.BOAR_VARIATI
 @AnimalCharacteristic(weight = 400, maxCountOnCell = 50, speed = 2, foodWeight = 50)
 public class Boar extends Animal implements Herbivore, Predator {
     private static final Map<Class<? extends Animal>, Integer> boarChancesOfEating = BOAR_VARIATION_OF_EATING;
+
     @Override
     public void eatPlants() {
 

@@ -13,6 +13,7 @@ import static com.javarush.island.zonov.constants.PredatorConstants.WOLF_VARIATI
 public class Wolf extends Animal implements Predator {
     private static final Map<Class<? extends Animal>, Integer> wolfChancesOfEating = WOLF_VARIATION_OF_EATING;
 
+
     @Override
     public boolean eatAnimal(Class eatenAnimal) {
         int chance = wolfChancesOfEating.get(eatenAnimal);

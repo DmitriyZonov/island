@@ -12,6 +12,8 @@ import static com.javarush.island.zonov.constants.PredatorConstants.BOA_VARIATIO
 @AnimalCharacteristic(weight = 15, maxCountOnCell = 30, speed = 1, foodWeight = 3)
 public class Boa extends Animal implements Predator {
     private static final Map<Class<? extends Animal>, Integer> boaChancesOfEating = BOA_VARIATION_OF_EATING;
+
+
     @Override
     public boolean eatAnimal(Class eatenAnimal) {
         int chance = boaChancesOfEating.get(eatenAnimal);

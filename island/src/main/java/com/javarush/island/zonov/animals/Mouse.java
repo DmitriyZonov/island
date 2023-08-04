@@ -13,6 +13,8 @@ import static com.javarush.island.zonov.constants.PredatorConstants.MOUSE_VARIAT
 @AnimalCharacteristic(weight = 0.05, maxCountOnCell = 500, speed = 1, foodWeight = 0.01)
 public class Mouse extends Animal implements Herbivore, Predator {
     private static final Map<Class<? extends Animal>, Integer> mouseChancesOfEating = MOUSE_VARIATION_OF_EATING;
+
+
     @Override
     public void eatPlants() {
 

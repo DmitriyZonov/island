@@ -13,6 +13,7 @@ import static com.javarush.island.zonov.constants.PredatorConstants.DUCK_VARIATI
 @AnimalCharacteristic(weight = 1, maxCountOnCell = 200, speed = 4, foodWeight = 0.15)
 public class Duck extends Animal implements Herbivore, Predator {
     private static final Map<Class<? extends Animal>, Integer> duckChancesOfEating = DUCK_VARIATION_OF_EATING;
+
     @Override
     public void eatPlants() {
 
