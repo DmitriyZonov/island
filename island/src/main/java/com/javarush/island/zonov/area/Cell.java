@@ -6,6 +6,8 @@ import com.javarush.island.zonov.liveNature.Plant;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.javarush.island.zonov.constants.CellConstants.CELL_NAME_FORMAT;
+
 public class Cell implements Runnable {
     private Terrain terrain;
     private String name;
@@ -13,6 +15,11 @@ public class Cell implements Runnable {
     private int y;
     private Set<Animal> animals = new HashSet<>();
     private Set<Plant> plants = new HashSet<>();
+    private Set<Cell> neighbors = new HashSet<>();
+    public Cell (int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
     public Cell(Terrain terrain, int x, int y) {
         this.terrain = terrain;
         this.x = x;
@@ -40,7 +47,19 @@ public class Cell implements Runnable {
     }
 
     public void setName(int x, int y) {
-        this.name = String.format("Квадрат [%d][%d]", x, y);
+        this.name = String.format(CELL_NAME_FORMAT, x, y);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setNeighbors(Set<Cell> neighbors) {
+        this.neighbors = neighbors;
+    }
+
+    public Set<Cell> getNeighbors() {
+        return neighbors;
     }
 
     public int getX() {

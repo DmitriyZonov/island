@@ -10,12 +10,10 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AnimalsGenerator {
-    private int maxCount;
 
-    public Set<Animal> generateAnimals(Class<? extends Animal> animalClass) {
-        AnimalCharacteristic animal = (AnimalCharacteristic) animalClass.getAnnotation(AnimalCharacteristic.class);
-        maxCount = animal.maxCountOnCell();
-        int count = ThreadLocalRandom.current().nextInt(1, maxCount + 1);
+    public static Set<Animal> generateAnimals(Class<? extends Animal> animalClass) {
+        AnimalCharacteristic animal = animalClass.getAnnotation(AnimalCharacteristic.class);
+        int count = ThreadLocalRandom.current().nextInt(1, animal.maxCountOnCell() + 1);
         Set<Animal> animalSet = new HashSet<>();
         try {
             for (int i = 0; i <= count; i++) {

@@ -7,11 +7,16 @@ import static com.javarush.island.zonov.constants.IslandConstants.ISLAND_SIZE;
 
 public class Island {
     private static final int[][] SIZE = ISLAND_SIZE;
-    private Set<Cell> cells = new HashSet<>();
+    private static Set<Cell> cells = new HashSet<>();
 
-    public void setCells(Set<Cell> cells) {
-        this.cells = cells;
+    public static void setCells(Set<Cell> cells) {
+        Island.cells = cells;
     }
+
+    public static Set<Cell> getCells() {
+        return cells;
+    }
+
     public static int[][] getSIZE() {
         return SIZE;
     }

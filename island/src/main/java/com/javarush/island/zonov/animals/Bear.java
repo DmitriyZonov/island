@@ -1,5 +1,6 @@
 package com.javarush.island.zonov.animals;
 
+import com.javarush.island.zonov.area.Cell;
 import com.javarush.island.zonov.charactersticInterfaces.AnimalCharacteristic;
 import com.javarush.island.zonov.animalInterfaces.Predator;
 import com.javarush.island.zonov.constants.Animals;
