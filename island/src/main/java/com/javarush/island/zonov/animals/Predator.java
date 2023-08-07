@@ -1,7 +1,8 @@
 package com.javarush.island.zonov.animals;
 
-import java.util.concurrent.ThreadLocalRandom;
+
+import com.javarush.island.zonov.animals.headClasses.Animal;
 
 public interface Predator {
-    public boolean eatAnimal (Class eatenAnimal);
+    void eatAnimal(Class<? extends Animal> eatenAnimal) throws IllegalAccessException, NoSuchFieldException;
 }

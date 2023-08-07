@@ -11,4 +11,6 @@ public class ConsoleViewConstants {
 
     public static final String FIRST_CHOICE = "Если Вы пользуетесь программой впервые - нажмите Enter для создания острова с нуля и следуйте дальнейшим инструкциям.\n" +
             "Или введите 0 для загрузки предыдущего состояния острова";
+
+    public static final String MULTIPLY_FAIL = "Размножение пошло не по плану!";
 }

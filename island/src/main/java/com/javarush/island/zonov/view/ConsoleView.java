@@ -15,9 +15,11 @@ public class ConsoleView implements View{
     @Override
     public String getFirstParameter() throws IOException{
         System.out.println(GREETING);
+        System.out.println();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String parameter;
         System.out.println(FIRST_CHOICE);
+        System.out.println();
         parameter = reader.readLine();
 
         return parameter;

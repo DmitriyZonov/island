@@ -1,7 +1,5 @@
 package com.javarush.island.zonov;
 
-
-
 import com.javarush.island.zonov.app.Application;
 import com.javarush.island.zonov.controller.MainController;
 import com.javarush.island.zonov.entity.Result;

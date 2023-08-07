@@ -1,7 +1,7 @@
 package com.javarush.island.zonov.island;
 
-import com.javarush.island.zonov.headClasses.Animal;
-import com.javarush.island.zonov.headClasses.Plant;
+import com.javarush.island.zonov.animals.headClasses.Animal;
+import com.javarush.island.zonov.animals.headClasses.Plant;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class Cell {
     private int x;
     private int y;
     private Map<Class<? extends Animal>, Set<Animal>> animals = new HashMap<>();
-    private Set<Plant> plants = new HashSet<>();
+    private Map<Class<? extends Plant>, Set<Plant>> plants = new HashMap<>();
     private Set<Cell> neighbors = new HashSet<>();
     public Cell (int x, int y) {
         this.x = x;
@@ -32,15 +32,15 @@ public class Cell {
         this.animals.putAll(animals);
     }
 
-    public void setPlants(Set<Plant> plants) {
-        this.plants.addAll(plants);
+    public void setPlants(Map<Class<? extends Plant>, Set<Plant>> plants) {
+        this.plants.putAll(plants);
     }
 
     public Map<Class<? extends Animal>, Set<Animal>> getAnimals() {
         return animals;
     }
 
-    public Set<Plant> getPlants() {
+    public Map<Class<? extends Plant>, Set<Plant>> getPlants() {
         return plants;
     }
 

@@ -1,7 +1,7 @@
 package com.javarush.island.zonov.generators;
 
 import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
-import com.javarush.island.zonov.headClasses.Animal;
+import com.javarush.island.zonov.animals.headClasses.Animal;
 
 import java.util.HashMap;
 import java.util.HashSet;
