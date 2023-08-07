@@ -1,8 +1,7 @@
 package com.javarush.island.zonov.animals;
 
-import com.javarush.island.zonov.charactersticInterfaces.AnimalCharacteristic;
-import com.javarush.island.zonov.animalInterfaces.Predator;
-import com.javarush.island.zonov.liveNature.Animal;
+import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
+import com.javarush.island.zonov.headClasses.Animal;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
@@ -19,5 +18,10 @@ public class Fox extends Animal implements Predator {
         int chance = foxChancesOfEating.get(eatenAnimal);
         boolean eatSuccess = ThreadLocalRandom.current().nextInt(1, 101) >= chance;
         return eatSuccess;
+    }
+
+    @Override
+    public Animal multiply(Animal animal) {
+        return super.multiply(animal);
     }
 }

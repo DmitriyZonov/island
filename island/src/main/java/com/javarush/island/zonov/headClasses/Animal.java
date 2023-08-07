@@ -1,14 +1,14 @@
-package com.javarush.island.zonov.liveNature;
+package com.javarush.island.zonov.headClasses;
 
-import com.javarush.island.zonov.area.Cell;
-import com.javarush.island.zonov.charactersticInterfaces.AnimalCharacteristic;
+import com.javarush.island.zonov.island.Cell;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static com.javarush.island.zonov.area.CellNeighborsGenerator.generateNeighbors;
+import static com.javarush.island.zonov.generators.CellNeighborsGenerator.generateNeighbors;
 
 public class Animal {
     private String name;
@@ -17,8 +17,21 @@ public class Animal {
         this.name = name;
     }
 
-    Animal multiply() {
-        return new Animal();
+    public Animal multiply(Animal animal) {
+        if (this.getClass() == animal.getClass()) {
+            Animal newAnimal = null;
+            Class animalClass = this.getClass();
+            try {
+                Constructor animalConstructor = animalClass.getConstructor();
+                newAnimal = (Animal) animalConstructor.newInstance();
+                System.out.println(newAnimal.getClass());
+            } catch (Exception e) {
+                System.out.println("Animal multiply fails!");
+            }
+            return newAnimal;
+        } else {
+            return  null;
+        }
     }
    public Cell walk(int speed, Cell cell) {
        Cell destination = cell;

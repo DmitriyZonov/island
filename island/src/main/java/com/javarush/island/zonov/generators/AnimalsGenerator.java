@@ -1,19 +1,20 @@
-package com.javarush.island.zonov;
+package com.javarush.island.zonov.generators;
 
-import com.javarush.island.zonov.charactersticInterfaces.AnimalCharacteristic;
-import com.javarush.island.zonov.constants.Animals;
-import com.javarush.island.zonov.liveNature.Animal;
+import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
+import com.javarush.island.zonov.headClasses.Animal;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AnimalsGenerator {
 
-    public static Set<Animal> generateAnimals(Class<? extends Animal> animalClass) {
+    public static Map<Class<? extends Animal>, Set<Animal>> generateAnimals(Class<? extends Animal> animalClass) {
         AnimalCharacteristic animal = animalClass.getAnnotation(AnimalCharacteristic.class);
-        int count = ThreadLocalRandom.current().nextInt(1, animal.maxCountOnCell() + 1);
+        int count = ThreadLocalRandom.current().nextInt(0, animal.maxCountOnCell());
+        Map<Class<? extends Animal>, Set<Animal>> animalMap = new HashMap<>();
         Set<Animal> animalSet = new HashSet<>();
         try {
             for (int i = 0; i <= count; i++) {
@@ -24,6 +25,8 @@ public class AnimalsGenerator {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return animalSet;
+        animalMap.put(animalClass, animalSet);
+
+        return animalMap;
     }
 }

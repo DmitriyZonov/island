@@ -1,8 +1,8 @@
-package com.javarush.island.zonov.area;
+package com.javarush.island.zonov.island;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static com.javarush.island.zonov.area.Terrain.*;
+import static com.javarush.island.zonov.island.Terrain.*;
 
 public class TerrainSetter {
     public static Terrain terrainSet() {

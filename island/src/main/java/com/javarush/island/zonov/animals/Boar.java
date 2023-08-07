@@ -1,9 +1,7 @@
 package com.javarush.island.zonov.animals;
 
-import com.javarush.island.zonov.charactersticInterfaces.AnimalCharacteristic;
-import com.javarush.island.zonov.animalInterfaces.Herbivore;
-import com.javarush.island.zonov.animalInterfaces.Predator;
-import com.javarush.island.zonov.liveNature.Animal;
+import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
+import com.javarush.island.zonov.headClasses.Animal;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
@@ -24,5 +22,10 @@ public class Boar extends Animal implements Herbivore, Predator {
         int chance = boarChancesOfEating.get(eatenAnimal);
         boolean eatSuccess = ThreadLocalRandom.current().nextInt(1, 101) >= chance;
         return eatSuccess;
+    }
+
+    @Override
+    public Animal multiply(Animal animal) {
+        return super.multiply(animal);
     }
 }

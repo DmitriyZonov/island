@@ -1,19 +1,20 @@
-package com.javarush.island.zonov.area;
+package com.javarush.island.zonov.generators;
 
-import java.util.ArrayList;
+import com.javarush.island.zonov.island.Cell;
+import com.javarush.island.zonov.island.Island;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import static com.javarush.island.zonov.area.CellNeighborsGenerator.generateNeighbors;
-import static com.javarush.island.zonov.area.TerrainSetter.terrainSet;
+import static com.javarush.island.zonov.generators.CellNeighborsGenerator.generateNeighbors;
+import static com.javarush.island.zonov.island.TerrainSetter.terrainSet;
 
 public class CellsGenerator {
    public static Set<Cell> generateCells() {
        int[][] size = Island.getSIZE();
        Set<Cell> cells = new HashSet<>();
-       for (int i = 0; i <= size.length; i++) {
-           for (int j = 0; j <= size[0].length + 1; j++) {
+       for (int i = 0; i < size.length; i++) {
+           for (int j = 0; j < size[0].length; j++) {
                Cell cell = new Cell(terrainSet(), i, j);
                cell.setName(i, j);
                generateNeighbors(cell);

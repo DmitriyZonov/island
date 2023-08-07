@@ -1,4 +1,6 @@
-package com.javarush.island.zonov.area;
+package com.javarush.island.zonov.generators;
+
+import com.javarush.island.zonov.island.Cell;
 
 import java.util.HashSet;
 import java.util.Set;

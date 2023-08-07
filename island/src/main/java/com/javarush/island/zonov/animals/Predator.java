@@ -1,4 +1,4 @@
-package com.javarush.island.zonov.animalInterfaces;
+package com.javarush.island.zonov.animals;
 
 import java.util.concurrent.ThreadLocalRandom;
 

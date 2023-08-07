@@ -1,19 +1,21 @@
-package com.javarush.island.zonov.area;
+package com.javarush.island.zonov.island;
 
-import com.javarush.island.zonov.liveNature.Animal;
-import com.javarush.island.zonov.liveNature.Plant;
+import com.javarush.island.zonov.headClasses.Animal;
+import com.javarush.island.zonov.headClasses.Plant;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static com.javarush.island.zonov.constants.CellConstants.CELL_NAME_FORMAT;
 
-public class Cell implements Runnable {
+public class Cell {
     private Terrain terrain;
     private String name;
     private int x;
     private int y;
-    private Set<Animal> animals = new HashSet<>();
+    private Map<Class<? extends Animal>, Set<Animal>> animals = new HashMap<>();
     private Set<Plant> plants = new HashSet<>();
     private Set<Cell> neighbors = new HashSet<>();
     public Cell (int x, int y) {
@@ -25,20 +27,16 @@ public class Cell implements Runnable {
         this.x = x;
         this.y = y;
     }
-    @Override
-    public void run() {
 
-    }
-
-    public void setAnimals(Set<Animal> animals) {
-        this.animals.addAll(animals);
+    public void setAnimals(Map<Class<? extends Animal>, Set<Animal>> animals) {
+        this.animals.putAll(animals);
     }
 
     public void setPlants(Set<Plant> plants) {
         this.plants.addAll(plants);
     }
 
-    public Set<Animal> getAnimals() {
+    public Map<Class<? extends Animal>, Set<Animal>> getAnimals() {
         return animals;
     }
 

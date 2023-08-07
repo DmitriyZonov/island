@@ -1,10 +1,8 @@
 package com.javarush.island.zonov.animals;
 
-import com.javarush.island.zonov.area.Cell;
-import com.javarush.island.zonov.charactersticInterfaces.AnimalCharacteristic;
-import com.javarush.island.zonov.animalInterfaces.Predator;
+import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
 import com.javarush.island.zonov.constants.Animals;
-import com.javarush.island.zonov.liveNature.Animal;
+import com.javarush.island.zonov.headClasses.Animal;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
@@ -28,4 +26,8 @@ public class Bear extends Animal implements Predator {
         return eatSuccess;
     }
 
+    @Override
+    public Animal multiply(Animal animal) {
+        return super.multiply(animal);
+    }
 }
