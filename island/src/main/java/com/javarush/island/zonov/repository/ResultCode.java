@@ -1,5 +1,5 @@
 package com.javarush.island.zonov.repository;
 
 public enum ResultCode {
-    OK, ERROR
+    OK, ERROR, GO_TO_NEXT_DAY
 }

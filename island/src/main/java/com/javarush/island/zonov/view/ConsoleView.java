@@ -28,11 +28,17 @@ public class ConsoleView implements View{
     @Override
     public String getRuntimeParameter() throws IOException {
         System.out.println();
-        return null;
+        System.out.println(NEXT_DAY);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String parameter;
+        System.out.println();
+        parameter = reader.readLine();
+        return parameter;
     }
 
     @Override
-    public void printResult(Result result) throws IOException {
+    public void printResult(Result result) {
+    System.out.println(ISLAND_STATISTIC, );
         switch (result.getResultCode()) {
             case OK -> System.out.println(SUCCESS);
             case ERROR -> System.out.println(EXCEPTION + result.getApplicationException().getMessage());

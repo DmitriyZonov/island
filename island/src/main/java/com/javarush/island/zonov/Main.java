@@ -9,7 +9,7 @@ import com.javarush.island.zonov.view.View;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         View view = new ConsoleView();
         MainController mainController = new MainController(view);

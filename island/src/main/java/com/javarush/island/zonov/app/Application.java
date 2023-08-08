@@ -3,6 +3,7 @@ package com.javarush.island.zonov.app;
 import com.javarush.island.zonov.controller.MainController;
 import com.javarush.island.zonov.entity.Result;
 import com.javarush.island.zonov.repository.FunctionCode;
+import com.javarush.island.zonov.repository.ResultCode;
 import com.javarush.island.zonov.services.Function;
 
 import java.io.IOException;
@@ -15,17 +16,21 @@ public class Application {
     public Application(MainController mainController) {
         this.mainController = mainController;
     }
-    public Result run() throws IOException {
+    public Result run() throws IOException, InterruptedException {
         firstRun();
         String mode = mainController.getView().getRuntimeParameter();
         Function function = getFunction(mode);
         return function.execute();
     }
 
-    public Result firstRun() throws IOException {
+    public Result firstRun() throws IOException, InterruptedException {
         String parameter = mainController.getView().getFirstParameter();
         Function function = getStartFunction(parameter);
-
+        return function.execute();
+    }
+    public Result nextDayRun() throws IOException, InterruptedException {
+        String parameter = mainController.getView().getRuntimeParameter();
+        Function function = getFunction(parameter);
         return function.execute();
     }
 
@@ -39,14 +44,22 @@ public class Application {
 
     private Function getFunction(String mode) {
         return switch (mode) {
-            case "2" -> FunctionCode.valueOf(NEXT_DAY).getFunction();
-            case "3" -> FunctionCode.valueOf(SAVE_RESULT).getFunction();
-            case "4" -> FunctionCode.valueOf(LOAD_SAVED_FILE).getFunction();
+            case "" -> FunctionCode.valueOf(NEXT_DAY).getFunction();
+            case "0" -> FunctionCode.valueOf(SAVE_RESULT).getFunction();
+            case "1" -> FunctionCode.valueOf(LOAD_SAVED_FILE).getFunction();
             default -> FunctionCode.valueOf(UNSUPPORTED_FUNCTION).getFunction();
         };
     }
 
     public void printResult(Result result) {
+        if (result.getResultCode() == ResultCode.GO_TO_NEXT_DAY) {
+            try {
+                Result resultOfNextDay = nextDayRun();
+                mainController.getView().printResult(resultOfNextDay);
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException();
+            }
+        }
             try {
                 mainController.getView().printResult(result);
             } catch (IOException e) {

@@ -2,12 +2,15 @@ package com.javarush.island.zonov.island;
 
 import com.javarush.island.zonov.animals.headClasses.Animal;
 import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
+import com.javarush.island.zonov.entity.Result;
+import com.javarush.island.zonov.repository.ResultCode;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Callable;
 
-public class Sector extends Thread {
+public class Sector implements Callable<ResultCode> {
     private Set<Cell> cells = new HashSet<>();
 
     public void setCells(Set<Cell> cells) {
@@ -19,7 +22,7 @@ public class Sector extends Thread {
     }
 
     @Override
-    public void run() {
+    public ResultCode call() {
         for (Cell cell : getCells()) {
             for (Map.Entry<Class<? extends Animal>, Set<Animal>> entry : cell.getAnimals().entrySet()) {
                 Set<Animal> animals = entry.getValue();
@@ -36,13 +39,17 @@ public class Sector extends Thread {
                             }
                         }
                         if (cell.getAnimals().containsKey(animal.getClass())) {
-                            animal.multiply(animal.getClass());
+                            Animal newAnimal = animal.multiply(animal.getClass());
+                            cell.getAnimals().get(animal.getClass()).add(newAnimal);
                         }
-                        animal.move(characteristic.speed(), cell);
+                        Cell destination = animal.move(characteristic.speed(), cell);
+                        cell.getAnimals().get(animal.getClass()).remove(animal);
+                        destination.getAnimals().get(animal.getClass()).add(animal);
                     }
                 }
             }
         }
+        return ResultCode.OK;
     }
 
     @Override
