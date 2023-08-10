@@ -2,54 +2,74 @@ package com.javarush.island.zonov.island;
 
 import com.javarush.island.zonov.animals.headClasses.Animal;
 import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
-import com.javarush.island.zonov.entity.Result;
-import com.javarush.island.zonov.repository.ResultCode;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class Sector implements Callable<ResultCode> {
-    private Set<Cell> cells = new HashSet<>();
+import static com.javarush.island.zonov.constants.AnimalClassesConstant.ANIMAL_CLASSES;
 
-    public void setCells(Set<Cell> cells) {
+public class Sector implements Callable<Sector> {
+    private List<Cell> cells = new ArrayList<>();
+
+    public void setCells(List<Cell> cells) {
         this.cells = cells;
     }
 
-    public Set<Cell> getCells() {
+    public List<Cell> getCells() {
         return cells;
     }
 
-    @Override
-    public ResultCode call() {
-        for (Cell cell : getCells()) {
-            for (Map.Entry<Class<? extends Animal>, Set<Animal>> entry : cell.getAnimals().entrySet()) {
-                Set<Animal> animals = entry.getValue();
-                for (Animal animal : animals) {
-                    AnimalCharacteristic characteristic = animal.getClass().getAnnotation(AnimalCharacteristic.class);
-                    if (characteristic.isAlive()) {
-                        for (Class<? extends Animal> animalClass : animal.getPotentialFood()) {
-                            try {
-                                animal.eatAnimal(animalClass);
-                                if(!characteristic.isHungry())
-                                    break;
-                            } catch (IllegalAccessException | NoSuchFieldException e) {
-                                throw new RuntimeException(e);
+
+    public Sector call() {
+        synchronized (this.getCells()) {
+            List<Cell> cellList = new ArrayList<>(getCells());
+            List<Cell> toSector = new ArrayList<>();
+            Sector sector = new Sector();
+            for (Cell cell : cellList) {
+                for (Class<? extends Animal> animalClass : ANIMAL_CLASSES) {
+                    Set<Animal> animalSet = cell.getAnimals().get(animalClass);
+                    List<Animal> animals = new ArrayList<>(animalSet);
+                    for (Animal animal : animals) {
+                        animal.setHungry(true);
+                        double eatenFood = 0;
+                        while (animal.getHungry()) {
+                            switch (animalClass.getAnnotation(AnimalCharacteristic.class).type()) {
+                                case PREDATOR -> eatenFood += animal.eatAnimal(cell, eatenFood);
+                                case HERBIVORE -> eatenFood += animal.eatPlants(cell, eatenFood);
+                                case PREDATOR_AND_HERBIVORE -> {
+                                    switch (ThreadLocalRandom.current().nextInt(1, 3)) {
+                                        case 1 -> eatenFood += animal.eatAnimal(cell, eatenFood);
+                                        case 2 -> eatenFood += animal.eatPlants(cell, eatenFood);
+                                    }
+                                }
                             }
                         }
-                        if (cell.getAnimals().containsKey(animal.getClass())) {
-                            Animal newAnimal = animal.multiply(animal.getClass());
-                            cell.getAnimals().get(animal.getClass()).add(newAnimal);
-                        }
-                        Cell destination = animal.move(characteristic.speed(), cell);
-                        cell.getAnimals().get(animal.getClass()).remove(animal);
-                        destination.getAnimals().get(animal.getClass()).add(animal);
+                            if (animals.size() > 1) {
+                                Animal newAnimal = animal.multiply();
+                                cell.getAnimals().get(animal.getClass()).add(newAnimal);
+                            }
+                            Cell destination = animal.move(animal.getClass().getAnnotation(AnimalCharacteristic.class).speed(), cell);
+                            cell.getAnimals().get(animal.getClass()).remove(animal);
+                            List<Cell> match = Island.getCells().stream().filter(x -> x.getX() == destination.getX()).
+                                    filter(x -> x.getY() == destination.getY()).toList();
+                            Cell destinationCell = match.get(0);;
+                            if (cellList.contains(destinationCell)) {
+                                destinationCell.getAnimals().get(animalClass).add(animal);
+                            } else {
+                                int index = Island.getCells().indexOf(match.get(0));
+                                synchronized (Island.getCells()) {
+                                   Island.getCells().get(index).getAnimals().get(animalClass).add(animal);
+                                }
+                            }
                     }
                 }
+                toSector.add(cell);
             }
+            sector.setCells(cellList);
+
+            return sector;
         }
-        return ResultCode.OK;
     }
 
     @Override

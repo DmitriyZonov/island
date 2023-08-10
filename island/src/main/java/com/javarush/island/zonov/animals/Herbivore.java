@@ -1,5 +1,7 @@
 package com.javarush.island.zonov.animals;
 
+import com.javarush.island.zonov.island.Cell;
+
 public interface Herbivore {
-    public void eatPlants();
+    double eatPlants(Cell cell, double eatenFood);
 }

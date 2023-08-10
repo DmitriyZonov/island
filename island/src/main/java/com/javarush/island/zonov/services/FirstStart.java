@@ -32,7 +32,7 @@ public class FirstStart implements Function {
         Island.setCells(generateCells());
         for (Cell cell : Island.getCells()) {
             for (Class<? extends Animal> animalClass : ANIMAL_CLASSES) {
-                cell.setAnimals(generateAnimals(animalClass));
+                cell.setAnimals(generateAnimals(animalClass, cell));
             }
             cell.setPlants(generatePlants(Plant.class));
         }

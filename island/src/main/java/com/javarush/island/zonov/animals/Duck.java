@@ -2,31 +2,25 @@ package com.javarush.island.zonov.animals;
 
 import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
 import com.javarush.island.zonov.animals.headClasses.Animal;
-import com.javarush.island.zonov.repository.AnimalSpecie;
+import com.javarush.island.zonov.island.Cell;
 
-import java.util.Set;
+import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR_AND_HERBIVORE;
 
-import static com.javarush.island.zonov.constants.PredatorConstants.*;
-import static com.javarush.island.zonov.repository.AnimalSpecie.DUCK;
-
-@AnimalCharacteristic(weight = 1, maxCountOnCell = 200, speed = 4, foodWeight = 0.15)
+@AnimalCharacteristic(weight = 1, maxCountOnCell = 200, speed = 4, foodWeight = 0.15, type = PREDATOR_AND_HERBIVORE)
 public class Duck extends Animal implements Herbivore, Predator {
-   private final Set<Class<? extends Animal>> potentialFood = DUCK_MENU;
-    AnimalSpecie specie = DUCK;
 
     @Override
-    public Set<Class<? extends Animal>> getPotentialFood() {
-        return potentialFood;
+    public double eatAnimal(Cell cell, double eatenFood) {
+        return super.eatAnimal(cell, eatenFood);
     }
 
     @Override
-    public void eatPlants() {
-
+    public double eatPlants(Cell cell, double eatenFood) {
+        return super.eatPlants(cell, eatenFood);
     }
 
-
     @Override
-    public Animal multiply(Class<? extends Animal> animal) {
-        return super.multiply(animal);
+    public Animal multiply() {
+        return super.multiply();
     }
 }

@@ -1,8 +1,7 @@
 package com.javarush.island.zonov.animals;
 
-
-import com.javarush.island.zonov.animals.headClasses.Animal;
+import com.javarush.island.zonov.island.Cell;
 
 public interface Predator {
-    void eatAnimal(Class<? extends Animal> eatenAnimal) throws IllegalAccessException, NoSuchFieldException;
+    double eatAnimal(Cell cell, double eatenFood) throws IllegalAccessException, NoSuchFieldException;
 }

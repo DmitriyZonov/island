@@ -10,4 +10,6 @@ public interface View {
     String getRuntimeParameter() throws IOException;
 
     void printResult(Result result) throws IOException;
+
+    void printStatistics() throws IOException;
 }

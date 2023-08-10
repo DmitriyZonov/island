@@ -54,13 +54,16 @@ public class Application {
     public void printResult(Result result) {
         if (result.getResultCode() == ResultCode.GO_TO_NEXT_DAY) {
             try {
+                mainController.getView().printStatistics();
                 Result resultOfNextDay = nextDayRun();
+                mainController.getView().printStatistics();
                 mainController.getView().printResult(resultOfNextDay);
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException();
             }
         }
             try {
+                mainController.getView().printStatistics();
                 mainController.getView().printResult(result);
             } catch (IOException e) {
                 throw new RuntimeException(e);

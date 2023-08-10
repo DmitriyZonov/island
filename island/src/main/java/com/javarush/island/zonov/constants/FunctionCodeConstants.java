@@ -1,6 +1,5 @@
 package com.javarush.island.zonov.constants;
 
-import com.javarush.island.zonov.services.FirstStart;
 
 public class FunctionCodeConstants {
     public static final String FIRST_START = "FIRST_START";

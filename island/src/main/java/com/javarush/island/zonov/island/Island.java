@@ -1,28 +1,28 @@
 package com.javarush.island.zonov.island;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.javarush.island.zonov.constants.IslandConstants.ISLAND_SIZE;
 
 public class Island {
     private static final int[][] SIZE = ISLAND_SIZE;
-    private static Set<Cell> cells = new HashSet<>();
-    private static Set<Sector> sectors = new HashSet<>();
+    private static List<Cell> cells = new ArrayList<>();
+    private static List<Sector> sectors = new ArrayList<>();
 
-    public static void setCells(Set<Cell> cells) {
+    public static void setCells(List<Cell> cells) {
         Island.cells = cells;
     }
 
-    public static void setSectors(Set<Sector> sectors) {
+    public static void setSectors(List<Sector> sectors) {
         Island.sectors = sectors;
     }
 
-    public static Set<Cell> getCells() {
+    public static List<Cell> getCells() {
         return cells;
     }
 
-    public static Set<Sector> getSectors() {
+    public static List<Sector> getSectors() {
         return sectors;
     }
 

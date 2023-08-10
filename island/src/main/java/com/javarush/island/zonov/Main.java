@@ -14,7 +14,7 @@ public class Main {
         View view = new ConsoleView();
         MainController mainController = new MainController(view);
         Application application = new Application(mainController);
-        Result result = application.firstRun();
+        Result result = application.run();
         application.printResult(result);
 
     }

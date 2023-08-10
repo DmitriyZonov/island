@@ -2,13 +2,13 @@ package com.javarush.island.zonov.view;
 
 import com.javarush.island.zonov.entity.Result;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static com.javarush.island.zonov.constants.ApplicationCompletionConstants.*;
 import static com.javarush.island.zonov.constants.ConsoleViewConstants.*;
+
 
 public class ConsoleView implements View{
 
@@ -27,6 +27,7 @@ public class ConsoleView implements View{
 
     @Override
     public String getRuntimeParameter() throws IOException {
+        System.out.println(ISLAND_STATISTIC);
         System.out.println();
         System.out.println(NEXT_DAY);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -38,10 +39,15 @@ public class ConsoleView implements View{
 
     @Override
     public void printResult(Result result) {
-    System.out.println(ISLAND_STATISTIC, );
         switch (result.getResultCode()) {
             case OK -> System.out.println(SUCCESS);
-            case ERROR -> System.out.println(EXCEPTION + result.getApplicationException().getMessage());
+            case ERROR -> System.out.println(EXCEPTION);
         }
+    }
+
+    @Override
+    public void printStatistics() {
+        System.out.println(ISLAND_STATISTIC);
+        System.out.println();
     }
 }

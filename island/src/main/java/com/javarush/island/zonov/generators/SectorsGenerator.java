@@ -4,22 +4,23 @@ import com.javarush.island.zonov.island.Cell;
 import com.javarush.island.zonov.island.Sector;
 
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import static com.javarush.island.zonov.constants.IslandConstants.ISLAND_SIZE;
 import static com.javarush.island.zonov.constants.IslandConstants.SECTORS_COUNT;
 
 public class SectorsGenerator {
-    public static Set<Sector> generateSectors(Set<Cell> cells) {
+    public static List<Sector> generateSectors(List<Cell> cells) {
         int sectorLength = ISLAND_SIZE.length / (SECTORS_COUNT / 4);
         int sectorWidth = ISLAND_SIZE[0].length / (SECTORS_COUNT / 2);
-        Set<Sector> sectors = new HashSet<>();
+        List<Sector> sectors = new ArrayList<>();
         int xIndex = 0;
         int yIndex = 0;
         for (int i = 0; i < SECTORS_COUNT; i++) {
             Sector sector = new Sector();
-            Set<Cell> sectorCells = new HashSet<>();
+            List<Cell> sectorCells = new ArrayList<>();
             for (int j = xIndex; j < xIndex + sectorLength; j++) {
                 for (int k = yIndex; k < yIndex + sectorWidth; k++) {
                     for (Cell cell : cells) {

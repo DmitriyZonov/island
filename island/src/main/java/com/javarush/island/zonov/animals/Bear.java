@@ -2,30 +2,21 @@ package com.javarush.island.zonov.animals;
 
 import com.javarush.island.zonov.characterstics.AnimalCharacteristic;
 import com.javarush.island.zonov.animals.headClasses.Animal;
-import com.javarush.island.zonov.repository.AnimalSpecie;
+import com.javarush.island.zonov.island.Cell;
 
-import java.util.Set;
+import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR;
 
-import static com.javarush.island.zonov.constants.PredatorConstants.*;
-import static com.javarush.island.zonov.repository.AnimalSpecie.BEAR;
-
-@AnimalCharacteristic(weight = 500, maxCountOnCell = 5, speed = 2, foodWeight = 80)
+@AnimalCharacteristic(weight = 500, maxCountOnCell = 5, speed = 2, foodWeight = 80, type = PREDATOR)
 public class Bear extends Animal implements Predator {
-    private final Set<Class<? extends Animal>> potentialFood = BEAR_MENU;
-    AnimalSpecie specie = BEAR;
 
     @Override
-    public Set<Class<? extends Animal>> getPotentialFood() {
-        return potentialFood;
+    public double eatAnimal(Cell cell, double eatenFood) {
+        return super.eatAnimal(cell, eatenFood);
     }
 
     @Override
-    public void eatAnimal(Class<? extends Animal> eatenAnimal) throws IllegalAccessException, NoSuchFieldException {
-        super.eatAnimal(eatenAnimal);
+    public Animal multiply() {
+        return super.multiply();
     }
 
-    @Override
-    public Animal multiply(Class<? extends Animal> animal) {
-        return super.multiply(animal);
-    }
 }
