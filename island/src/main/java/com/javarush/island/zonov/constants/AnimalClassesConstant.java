@@ -1,13 +1,13 @@
 package com.javarush.island.zonov.constants;
 
-import com.javarush.island.zonov.animals.*;
-import com.javarush.island.zonov.animals.headClasses.Animal;
+import com.javarush.island.zonov.entity.animals.*;
+import com.javarush.island.zonov.entity.animals.headClasses.Animal;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AnimalClassesConstant {
-    public static final List<Class<? extends Animal>> ANIMAL_CLASSES = new ArrayList<>();
+    public static final Set<Class<? extends Animal>> ANIMAL_CLASSES = new HashSet<>();
 
     static {
         ANIMAL_CLASSES.add(Bear.class);

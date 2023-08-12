@@ -2,8 +2,8 @@ package com.javarush.island.zonov.services;
 
 import com.javarush.island.zonov.entity.Result;
 import com.javarush.island.zonov.exception.ApplicationException;
-import com.javarush.island.zonov.island.Island;
-import com.javarush.island.zonov.island.Sector;
+import com.javarush.island.zonov.entity.island.Island;
+import com.javarush.island.zonov.entity.island.Sector;
 import com.javarush.island.zonov.repository.ResultCode;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class NextDay implements Function{
     }
 
     private void startNewDay() throws InterruptedException, ExecutionException {
-        ExecutorService service = Executors.newFixedThreadPool(8);
+        ExecutorService service = Executors.newFixedThreadPool(10);
         List<Callable<Sector>> listOfTasks = new ArrayList<>(Island.getSectors());
         List<Future<Sector>> future = service.invokeAll(listOfTasks);
         service.shutdown();

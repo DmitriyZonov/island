@@ -1,7 +1,7 @@
 package com.javarush.island.zonov.constants;
 
-import com.javarush.island.zonov.animals.*;
-import com.javarush.island.zonov.animals.headClasses.Animal;
+import com.javarush.island.zonov.entity.animals.*;
+import com.javarush.island.zonov.entity.animals.headClasses.Animal;
 
 import java.util.HashMap;
 import java.util.HashSet;

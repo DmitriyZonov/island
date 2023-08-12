@@ -1,10 +1,8 @@
 package com.javarush.island.zonov.constants;
 
-import com.javarush.island.zonov.animals.*;
-import com.javarush.island.zonov.island.Island;
+import com.javarush.island.zonov.entity.animals.*;
 
-import static com.javarush.island.zonov.island.IslandPopulationCounter.*;
-import static com.javarush.island.zonov.island.SectorPopulationCounter.*;
+import static com.javarush.island.zonov.util.counters.IslandPopulationCounter.*;
 
 public class ConsoleViewConstants {
     public static final String GREETING = "Добро пожаловать в симуляцию жизни на острове.\n" +
