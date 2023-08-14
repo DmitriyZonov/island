@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 
-import static com.javarush.island.zonov.constants.IslandConstants.ISLAND_SIZE;
-import static com.javarush.island.zonov.constants.IslandConstants.SECTORS_COUNT;
+import static com.javarush.island.zonov.repository.IslandParameters.ISLAND_SIZE;
+import static com.javarush.island.zonov.repository.IslandParameters.SECTORS_COUNT;
 
 public class SectorsGenerator {
     public static List<Sector> generateSectors(Set<Cell> cells) {
@@ -27,6 +27,7 @@ public class SectorsGenerator {
                 for (int k = yIndex; k < yIndex + sectorWidth; k++) {
                     for (Cell cell : cells) {
                         if (cell.getX() == j && cell.getY() == k) {
+                            cell.setSectorIndex(i);
                             sectorCells.add(cell);
                         }
                     }

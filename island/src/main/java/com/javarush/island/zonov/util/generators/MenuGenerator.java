@@ -6,8 +6,8 @@ import com.javarush.island.zonov.entity.animals.headClasses.Plant;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.javarush.island.zonov.constants.HerbivoreConstants.HERBIVORE_MENU;
-import static com.javarush.island.zonov.constants.PredatorConstants.*;
+import static com.javarush.island.zonov.repository.HerbivoreMenu.HERBIVORE_MENU;
+import static com.javarush.island.zonov.repository.PredatorMenu.*;
 
 public class MenuGenerator {
     public static Set<Class<? extends Animal>> generatePredatorMenu(Class<? extends Animal> animalClass) {

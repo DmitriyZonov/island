@@ -1,4 +1,4 @@
-package com.javarush.island.zonov.constants;
+package com.javarush.island.zonov.repository;
 
 import com.javarush.island.zonov.entity.animals.*;
 import com.javarush.island.zonov.entity.animals.headClasses.Animal;
@@ -6,7 +6,7 @@ import com.javarush.island.zonov.entity.animals.headClasses.Animal;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AnimalClassesConstant {
+public class AnimalClasses {
     public static final Set<Class<? extends Animal>> ANIMAL_CLASSES = new HashSet<>();
 
     static {

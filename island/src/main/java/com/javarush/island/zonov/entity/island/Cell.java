@@ -13,6 +13,7 @@ public class Cell {
     private String name;
     private int x;
     private int y;
+    private int sectorIndex;
     private Map<Class<? extends Animal>, Set<Animal>> animals = new HashMap<>();
     private Map<Class<? extends Plant>, Set<Plant>> plants = new HashMap<>();
     private Set<Cell> neighbors = new HashSet<>();
@@ -24,6 +25,14 @@ public class Cell {
         this.terrainCode = terrainCode;
         this.x = x;
         this.y = y;
+    }
+
+    public void setSectorIndex(int sectorIndex) {
+        this.sectorIndex = sectorIndex;
+    }
+
+    public int getSectorIndex() {
+        return sectorIndex;
     }
 
     public void setAnimals(Map<Class<? extends Animal>, Set<Animal>> animals) {
@@ -64,18 +73,6 @@ public class Cell {
 
     public int getY() {
         return y;
-    }
-
-    @Override
-    public String toString() {
-        return "Cell{" +
-                "terrain=" + terrainCode +
-                ", name='" + name + '\'' +
-                ", x=" + x +
-                ", y=" + y +
-                ", animals=" + animals +
-                ", plants=" + plants +
-                '}';
     }
 
     @Override

@@ -27,13 +27,8 @@ public class NextDay implements Function{
 
     private void startNewDay() throws InterruptedException, ExecutionException {
         ExecutorService service = Executors.newFixedThreadPool(10);
-        List<Callable<Sector>> listOfTasks = new ArrayList<>(Island.getSectors());
-        List<Future<Sector>> future = service.invokeAll(listOfTasks);
+        List<Callable<ResultCode>> listOfTasks = new ArrayList<>(Island.getSectors());
+        List<Future<ResultCode>> future = service.invokeAll(listOfTasks);
         service.shutdown();
-        List<Sector> sectors = new ArrayList<>();
-        for (int i = 0; i < future.size(); i++) {
-            sectors.add(future.get(i).get());
-        }
-        Island.setSectors(sectors);
     }
 }

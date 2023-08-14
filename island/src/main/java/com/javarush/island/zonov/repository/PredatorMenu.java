@@ -1,4 +1,4 @@
-package com.javarush.island.zonov.constants;
+package com.javarush.island.zonov.repository;
 
 import com.javarush.island.zonov.entity.animals.*;
 import com.javarush.island.zonov.entity.animals.headClasses.Animal;
@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class PredatorConstants {
+public class PredatorMenu {
     public static final Map<Class<? extends Animal>, Integer> WOLF_VARIATION_OF_EATING = new HashMap<>();
     static {
         WOLF_VARIATION_OF_EATING.put(Horse.class, 10);

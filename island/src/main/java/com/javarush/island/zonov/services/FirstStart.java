@@ -10,10 +10,12 @@ import com.javarush.island.zonov.entity.island.Sector;
 import com.javarush.island.zonov.repository.ResultCode;
 
 
+import java.lang.reflect.InvocationTargetException;
+
 import static com.javarush.island.zonov.constants.ExceptionConstants.EXCEPTION_MESSAGE;
 import static com.javarush.island.zonov.util.generators.AnimalsGenerator.generateAnimals;
 import static com.javarush.island.zonov.util.generators.CellsGenerator.generateCells;
-import static com.javarush.island.zonov.constants.AnimalClassesConstant.ANIMAL_CLASSES;
+import static com.javarush.island.zonov.repository.AnimalClasses.ANIMAL_CLASSES;
 import static com.javarush.island.zonov.util.generators.PlantsGenerator.generatePlants;
 import static com.javarush.island.zonov.util.generators.SectorsGenerator.generateSectors;
 
@@ -29,7 +31,7 @@ public class FirstStart implements Function {
         return new Result(ResultCode.GO_TO_NEXT_DAY);
     }
 
-    private void createNewIsland() {
+    private void createNewIsland() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Island.setSectors(generateSectors(generateCells()));
         for (Sector sector : Island.getSectors()) {
             for (Cell cell : sector.getCells()) {

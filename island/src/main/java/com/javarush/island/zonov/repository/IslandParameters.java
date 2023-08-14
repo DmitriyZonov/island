@@ -1,6 +1,6 @@
-package com.javarush.island.zonov.constants;
+package com.javarush.island.zonov.repository;
 
-public class IslandConstants {
+public class IslandParameters {
     public static final int[][] ISLAND_SIZE = new int[50][20];
     public static final int SECTORS_COUNT = 8;
 }
