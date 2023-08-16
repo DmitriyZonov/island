@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 import static com.javarush.island.zonov.constants.ApplicationCompletionConstants.*;
 import static com.javarush.island.zonov.constants.ConsoleViewConstants.*;
+import static com.javarush.island.zonov.util.counters.IslandPopulationGetter.getIslandInformation;
 
 
 public class ConsoleView implements View{
@@ -27,7 +28,7 @@ public class ConsoleView implements View{
 
     @Override
     public String getRuntimeParameter() throws IOException {
-        System.out.println(ISLAND_STATISTIC);
+        System.out.println(getIslandInformation());
         System.out.println();
         System.out.println(NEXT_DAY);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -40,6 +41,7 @@ public class ConsoleView implements View{
     @Override
     public void printResult(Result result) {
         switch (result.getResultCode()) {
+            case GO_TO_NEXT_DAY -> System.out.println();
             case OK -> System.out.println(SUCCESS);
             case ERROR -> System.out.println(EXCEPTION);
         }
@@ -47,7 +49,7 @@ public class ConsoleView implements View{
 
     @Override
     public void printStatistics() {
-        System.out.println(ISLAND_STATISTIC);
+        System.out.println(getIslandInformation());
         System.out.println();
     }
 }

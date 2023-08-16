@@ -8,7 +8,7 @@ import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR;
 
 
 public class Bear extends Animal implements Predator {
-    private AnimalTypeCode type = PREDATOR;
+    private final AnimalTypeCode type = PREDATOR;
 
 
     @Override

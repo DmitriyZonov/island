@@ -47,23 +47,22 @@ public class Application {
             case "" -> FunctionCode.valueOf(NEXT_DAY).getFunction();
             case "0" -> FunctionCode.valueOf(SAVE_RESULT).getFunction();
             case "1" -> FunctionCode.valueOf(LOAD_SAVED_FILE).getFunction();
+            case "exit" -> FunctionCode.valueOf(EXIT).getFunction();
             default -> FunctionCode.valueOf(UNSUPPORTED_FUNCTION).getFunction();
         };
     }
 
     public void printResult(Result result) {
-        if (result.getResultCode() == ResultCode.GO_TO_NEXT_DAY) {
+        while (result.getResultCode() == ResultCode.GO_TO_NEXT_DAY) {
             try {
-                mainController.getView().printStatistics();
                 Result resultOfNextDay = nextDayRun();
-                mainController.getView().printStatistics();
                 mainController.getView().printResult(resultOfNextDay);
+                mainController.getView().printStatistics();
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException();
             }
         }
             try {
-                mainController.getView().printStatistics();
                 mainController.getView().printResult(result);
             } catch (IOException e) {
                 throw new RuntimeException(e);

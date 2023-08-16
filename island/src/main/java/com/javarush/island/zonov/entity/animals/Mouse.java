@@ -8,7 +8,7 @@ import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR_AND_H
 
 
 public class Mouse extends Animal implements Herbivore, Predator {
-    private AnimalTypeCode type = PREDATOR_AND_HERBIVORE;
+    private final AnimalTypeCode type = PREDATOR_AND_HERBIVORE;
 
     @Override
     public AnimalTypeCode getType() {

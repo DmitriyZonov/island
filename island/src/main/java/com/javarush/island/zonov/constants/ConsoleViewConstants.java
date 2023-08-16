@@ -1,8 +1,5 @@
 package com.javarush.island.zonov.constants;
 
-import com.javarush.island.zonov.entity.animals.*;
-
-import static com.javarush.island.zonov.util.counters.IslandPopulationCounter.*;
 
 public class ConsoleViewConstants {
     public static final String GREETING = "Добро пожаловать в симуляцию жизни на острове.\n" +
@@ -20,9 +17,11 @@ public class ConsoleViewConstants {
 
     public static final String NEXT_DAY = "Для запуска симуляции следующего дня нажмите ENTER\n" +
             "Чтобы сохранить прогресс нажмите 0\n" +
-            "Чтобы загрузить сохраненный прогресс нажмите 1\n";
+            "Чтобы загрузить сохраненный прогресс нажмите 1\n" +
+            "Для выхода из симуляции нажмите Exit";
+    public static final String NEW = "New ";
 
-    public static final String ISLAND_STATISTIC = String.format("На острове проживает:\n" +
+    public static final String ISLAND_STATISTIC = "На острове проживает:\n" +
             "%d животных, из них:\n" +
             "%d медведей\n" +
             "%d удавов\n" +
@@ -39,13 +38,13 @@ public class ConsoleViewConstants {
             "%d мышей\n" +
             "%d кроликов\n" +
             "%d овец\n" +
-            "%d растений\n",
-            allPopulationCount(), oneAnimalSpecieCount(Bear.class), oneAnimalSpecieCount(Boa.class),
-            oneAnimalSpecieCount(Eagle.class), oneAnimalSpecieCount(Fox.class), oneAnimalSpecieCount(Wolf.class),
-            oneAnimalSpecieCount(Boar.class), oneAnimalSpecieCount(Buffalo.class), oneAnimalSpecieCount(Caterpillar.class),
-            oneAnimalSpecieCount(Deer.class), oneAnimalSpecieCount(Duck.class), oneAnimalSpecieCount(Goat.class),
-            oneAnimalSpecieCount(Horse.class), oneAnimalSpecieCount(Mouse.class), oneAnimalSpecieCount(Rabbit.class),
-            oneAnimalSpecieCount(Sheep.class), allPlantCount());
+            "%d растений\n";
+//            allPopulationCount(), oneAnimalSpecieCount(Bear.class), oneAnimalSpecieCount(Boa.class),
+//            oneAnimalSpecieCount(Eagle.class), oneAnimalSpecieCount(Fox.class), oneAnimalSpecieCount(Wolf.class),
+//            oneAnimalSpecieCount(Boar.class), oneAnimalSpecieCount(Buffalo.class), oneAnimalSpecieCount(Caterpillar.class),
+//            oneAnimalSpecieCount(Deer.class), oneAnimalSpecieCount(Duck.class), oneAnimalSpecieCount(Goat.class),
+//            oneAnimalSpecieCount(Horse.class), oneAnimalSpecieCount(Mouse.class), oneAnimalSpecieCount(Rabbit.class),
+//            oneAnimalSpecieCount(Sheep.class), allPlantCount());
 
 //    public static final String SECTOR_STATISTIC = String.format("В секторе проживает:\n" +
 //            "%d животных, из них:\n" +

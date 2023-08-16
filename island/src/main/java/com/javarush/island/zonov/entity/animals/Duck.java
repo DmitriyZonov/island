@@ -7,7 +7,7 @@ import com.javarush.island.zonov.repository.AnimalTypeCode;
 import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR_AND_HERBIVORE;
 
 public class Duck extends Animal implements Herbivore, Predator {
-    private AnimalTypeCode type = PREDATOR_AND_HERBIVORE;
+    private final AnimalTypeCode type = PREDATOR_AND_HERBIVORE;
 
     @Override
     public AnimalTypeCode getType() {

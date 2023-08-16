@@ -28,9 +28,9 @@ public class AnimalsGenerator {
                     case PREDATOR-> animalObject.setPotentialPredatorFood(generatePredatorMenu(animalClass));
                     case PREDATOR_AND_HERBIVORE -> {
                         animalObject.setPotentialPredatorFood(generatePredatorMenu(animalClass));
-                        animalObject.setPotentialHerbivoreFood(generatePlantMenu());
+                        animalObject.setPotentialHerbivoreFood(generatePlantMenu(animalClass));
                     }
-                    case HERBIVORE -> animalObject.setPotentialHerbivoreFood(generatePlantMenu());
+                    case HERBIVORE -> animalObject.setPotentialHerbivoreFood(generatePlantMenu(animalClass));
                 }
                 animalSet.add(animalObject);
             }

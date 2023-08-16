@@ -13,10 +13,12 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.javarush.island.zonov.constants.ConsoleViewConstants.MULTIPLY_FAIL;
+import static com.javarush.island.zonov.constants.ConsoleViewConstants.NEW;
+import static com.javarush.island.zonov.repository.HerbivoreMenu.HERBIVORE_CHANCE_OF_EAT;
 import static com.javarush.island.zonov.repository.PredatorMenu.CHANCE_OF_EAT;
-import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR;
 import static com.javarush.island.zonov.util.AnimalCharacteristicSetter.setCharacteristic;
 import static com.javarush.island.zonov.util.DestinationCellGenerator.generateDestinationCell;
+import static com.javarush.island.zonov.util.generators.MenuGenerator.generatePlantMenu;
 import static com.javarush.island.zonov.util.generators.MenuGenerator.generatePredatorMenu;
 
 public class Animal implements Predator, Herbivore {
@@ -35,7 +37,6 @@ public class Animal implements Predator, Herbivore {
     }
 
     private boolean isAlive = true;
-
     private boolean isGone = false;
     private boolean isHungry = true;
     private Set<Class<? extends Animal>> potentialPredatorFood;
@@ -43,11 +44,7 @@ public class Animal implements Predator, Herbivore {
     private String name;
 
     private final Map<Class<? extends Animal>, Map<Class<? extends Animal>, Integer>> chanceOfEat = CHANCE_OF_EAT;
-
-    public Set<Class<? extends Animal>> getPotentialPredatorFood() {
-        return potentialPredatorFood;
-    }
-
+    private final Map<Class<? extends Animal>, Map<Class<? extends Plant>, Integer>> chanceOfHerbivoreEat = HERBIVORE_CHANCE_OF_EAT;
     public AnimalTypeCode getType() {
         return type;
     }
@@ -58,10 +55,6 @@ public class Animal implements Predator, Herbivore {
 
     public int getMaxCountOnCell() {
         return maxCountOnCell;
-    }
-
-    public double getFoodWeight() {
-        return foodWeight;
     }
 
     public int getSpeed() {
@@ -104,34 +97,45 @@ public class Animal implements Predator, Herbivore {
 
 
     public void multiply(Cell cell) {
-            Animal newAnimal;
-            try {
-                newAnimal = this.getClass().getConstructor().newInstance();
-                newAnimal.setName("New " + newAnimal.getClass().getSimpleName());
-                for(Cell current : Island.getSectors().get(cell.getSectorIndex()).getCells()) {
-                    if (current.equals(cell)) {
-                        current.getAnimals().get(newAnimal.getClass()).add(newAnimal);
-                        break;
-                    }
+        Animal newAnimal;
+        try {
+            newAnimal = this.getClass().getConstructor().newInstance();
+            newAnimal.setName(NEW + newAnimal.getClass().getSimpleName());
+            for(Cell current : Island.getSectors().get(cell.getSectorIndex()).getCells()) {
+                if (current.equals(cell)) {
+                    current.getAnimals().get(newAnimal.getClass()).add(newAnimal);
+                    break;
                 }
-                if (newAnimal.getType() == PREDATOR) {
-                    newAnimal.setPotentialPredatorFood(generatePredatorMenu(newAnimal.getClass()));
-                }
-            } catch (Exception e) {
-                throw new ApplicationException(MULTIPLY_FAIL);
             }
+            switch(newAnimal.getType()) {
+                case PREDATOR -> newAnimal.setPotentialPredatorFood(generatePredatorMenu(newAnimal.getClass()));
+                case PREDATOR_AND_HERBIVORE -> {
+                    newAnimal.setPotentialPredatorFood(generatePredatorMenu(newAnimal.getClass()));
+                    newAnimal.setPotentialHerbivoreFood(generatePlantMenu(newAnimal.getClass()));
+                }
+                case HERBIVORE -> newAnimal.setPotentialHerbivoreFood(generatePlantMenu(newAnimal.getClass()));
+            }
+        } catch (Exception e) {
+            throw new ApplicationException(MULTIPLY_FAIL);
+        }
     }
     @Override
     public double eatPlants(Cell cell, double eatenFood) {
-        Set<Plant> plantsToEat = cell.getPlants().get(Plant.class);
+        Class<? extends Plant> eatenPlantClass = this.potentialHerbivoreFood.iterator().next();
+        Set<Plant> plantsToEat = cell.getPlants().get(eatenPlantClass);
         if (!plantsToEat.isEmpty()) {
             Plant plant = plantsToEat.iterator().next();
             double weightOfPlant = plant.getWeight();
             double food = eatenFood;
-            food += weightOfPlant;
-            for (Cell current : Island.getSectors().get(cell.getSectorIndex()).getCells()) {
-                if (current.equals(cell)) {
-                    current.getPlants().get(Plant.class).remove(plant);
+            boolean eatSuccess = ThreadLocalRandom.current().nextInt(1, 101) <= chanceOfHerbivoreEat.get(this.getClass()).get(eatenPlantClass);
+
+            if (eatSuccess) {
+                food += weightOfPlant;
+                for (Cell current : Island.getSectors().get(cell.getSectorIndex()).getCells()) {
+                    if (current.equals(cell)) {
+                        current.getPlants().get(eatenPlantClass).remove(plant);
+                        break;
+                    }
                 }
             }
             if (food >= this.foodWeight) {

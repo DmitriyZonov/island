@@ -17,7 +17,7 @@ public class PlantsGenerator {
         Map <Class<? extends Plant>, Set<Plant>> plants = new HashMap<>();
         Set<Plant> plantSet = new HashSet<>();
         try {
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i <= count; i++) {
                 Plant plantObject = plantClass.getConstructor().newInstance();
                 plantObject.setName(plantClass.getSimpleName() + " - " + i);
                 plantSet.add(plantObject);

@@ -7,7 +7,7 @@ import com.javarush.island.zonov.repository.AnimalTypeCode;
 import static com.javarush.island.zonov.repository.AnimalTypeCode.HERBIVORE;
 
 public class Rabbit extends Animal implements Herbivore {
-    private AnimalTypeCode type = HERBIVORE;
+    private final AnimalTypeCode type = HERBIVORE;
 
     @Override
     public AnimalTypeCode getType() {

@@ -1,5 +1,6 @@
 package com.javarush.island.zonov.util.counters;
 
+import com.javarush.island.zonov.entity.animals.*;
 import com.javarush.island.zonov.entity.animals.headClasses.Animal;
 import com.javarush.island.zonov.entity.animals.headClasses.Plant;
 import com.javarush.island.zonov.entity.island.Cell;
@@ -9,9 +10,11 @@ import com.javarush.island.zonov.entity.island.Sector;
 import java.util.Map;
 import java.util.Set;
 
-public class IslandPopulationCounter {
+import static com.javarush.island.zonov.constants.ConsoleViewConstants.ISLAND_STATISTIC;
 
-    public static int allPopulationCount() {
+public class IslandPopulationGetter {
+
+    private static int allPopulationCount() {
         int population = 0;
         for (Sector sector : Island.getSectors()) {
             for (Cell cell : sector.getCells()) {
@@ -25,7 +28,7 @@ public class IslandPopulationCounter {
         }
         return population;
     }
-    public static int allPlantCount() {
+    private static int allPlantCount() {
         int plants = 0;
         for (Sector sector : Island.getSectors()) {
             for (Cell cell : sector.getCells()) {
@@ -39,7 +42,7 @@ public class IslandPopulationCounter {
         }
         return plants;
     }
-    public static int oneAnimalSpecieCount(Class<? extends Animal> animalClass) {
+    private static int oneAnimalSpecieCount(Class<? extends Animal> animalClass) {
         int population = 0;
         for (Sector sector : Island.getSectors()) {
             for (Cell cell : sector.getCells()) {
@@ -50,6 +53,16 @@ public class IslandPopulationCounter {
             }
         }
         return population;
+    }
+    public static String getIslandInformation() {
+       String info = String.format(ISLAND_STATISTIC,
+                allPopulationCount(), oneAnimalSpecieCount(Bear.class), oneAnimalSpecieCount(Boa.class),
+                oneAnimalSpecieCount(Eagle.class), oneAnimalSpecieCount(Fox.class), oneAnimalSpecieCount(Wolf.class),
+                oneAnimalSpecieCount(Boar.class), oneAnimalSpecieCount(Buffalo.class), oneAnimalSpecieCount(Caterpillar.class),
+                oneAnimalSpecieCount(Deer.class), oneAnimalSpecieCount(Duck.class), oneAnimalSpecieCount(Goat.class),
+                oneAnimalSpecieCount(Horse.class), oneAnimalSpecieCount(Mouse.class), oneAnimalSpecieCount(Rabbit.class),
+                oneAnimalSpecieCount(Sheep.class), allPlantCount());
+       return info;
     }
 
 }

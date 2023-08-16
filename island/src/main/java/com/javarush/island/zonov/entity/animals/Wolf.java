@@ -7,7 +7,7 @@ import com.javarush.island.zonov.repository.AnimalTypeCode;
 import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR;
 
 public class Wolf extends Animal implements Predator {
-    private AnimalTypeCode type = PREDATOR;
+    private final AnimalTypeCode type = PREDATOR;
     @Override
     public AnimalTypeCode getType() {
         return type;

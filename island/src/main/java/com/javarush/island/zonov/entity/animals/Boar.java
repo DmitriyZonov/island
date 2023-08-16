@@ -4,11 +4,10 @@ import com.javarush.island.zonov.entity.animals.headClasses.Animal;
 import com.javarush.island.zonov.entity.island.Cell;
 import com.javarush.island.zonov.repository.AnimalTypeCode;
 
-import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR;
 import static com.javarush.island.zonov.repository.AnimalTypeCode.PREDATOR_AND_HERBIVORE;
 
 public class Boar extends Animal implements Herbivore, Predator {
-    private AnimalTypeCode type = PREDATOR_AND_HERBIVORE;
+    private final AnimalTypeCode type = PREDATOR_AND_HERBIVORE;
 
     @Override
     public AnimalTypeCode getType() {

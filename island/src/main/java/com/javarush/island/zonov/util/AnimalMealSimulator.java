@@ -5,7 +5,7 @@ import com.javarush.island.zonov.entity.island.Cell;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class AnimalMealSimulation {
+public class AnimalMealSimulator {
 
     public static void simulateMeal (Cell cell, Animal animal) {
         double eatenFood = 0;
@@ -25,5 +25,6 @@ public class AnimalMealSimulation {
                 break;
             }
         }
+        animal.setAlive(false);
     }
 }
